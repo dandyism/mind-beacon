@@ -3,11 +3,19 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:gravity="center"
     >
-<TextView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="Hello World, BeaconActivity"
-    />
-</LinearLayout>
+    <Button 
+        android:id="@+id/button_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tgglbtn_text"
+        />
+    <Button
+        android:id="@+id/button_interval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/intbtn_text"
+        />
 
+</LinearLayout>
