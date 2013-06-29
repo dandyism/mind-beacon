@@ -31,5 +31,8 @@ proguard/
 # Vim swap files
 *.sw[op]
 
+# Vim session files
+Session.vim
+
 # tag files
 tags
