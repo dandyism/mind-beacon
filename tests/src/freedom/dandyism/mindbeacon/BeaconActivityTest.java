@@ -18,8 +18,6 @@ import com.jayway.android.robotium.solo.Solo;
 public class BeaconActivityTest extends ActivityInstrumentationTestCase2<BeaconActivity> {
 
     private Solo solo;
-    private Button mIntervalBttn;
-    private Button mDoneBttn;
 
     public BeaconActivityTest() {
         super("freedom.dandyism.mindbeacon", BeaconActivity.class);
@@ -30,9 +28,6 @@ public class BeaconActivityTest extends ActivityInstrumentationTestCase2<BeaconA
         super.setUp();
 
         solo = new Solo(getInstrumentation(), getActivity());
-
-        /* FIXME */
-        mIntervalBttn = (Button) solo.getCurrentActivity().findViewById(R.id.button_interval);
     }
 
     /**
@@ -56,32 +51,9 @@ public class BeaconActivityTest extends ActivityInstrumentationTestCase2<BeaconA
      * Checks for all the necessary elements when the app starts.
      */
     public void testPreConditions() {
-        assertTrue("There is no button to start the beacon.", solo.searchButton("Start Beacon"));
-        assertTrue("There is no button to set the interval.", solo.searchButton("Set Interval"));
-    }
-
-    /**
-     * Clicking the "Set Interval" button should display a TimePicker.
-     */
-    public void testShowTimePicker() {
-        clickButton(mIntervalBttn);
-        assertTrue("The TimePicker dialog is not shown.", solo.waitForFragmentByTag("timePicker"));
-    }
-
-    /**
-     * Clicking "Done" in the TimePicker dialog should set the interval.
-     */
-    public void testSetInterval() {
-        BeaconActivity activity = (BeaconActivity) solo.getCurrentActivity();
-        clickButton(mIntervalBttn);
-        solo.clearEditText(0);
-        solo.clearEditText(1);
-        solo.enterText(0, "1");
-        solo.enterText(1, "30");
-        mDoneBttn = (Button) solo.getButton("Done");
-        clickButton(mDoneBttn);
-        assertEquals("The interval hour was not set.", 1, activity.hours());
-        assertEquals("The interval minute was not set.", 30, activity.minutes());
+        assertTrue("There is no button to start the beacon.", solo.searchButton(solo.getString(R.string.tgglbttn_text)));
+        assertTrue("There is no hour picker.", solo.waitForView(solo.getView(R.id.hour_picker)));
+        assertTrue("There is no minute picker.", solo.waitForView(solo.getView(R.id.minute_picker)));
     }
 
     @Override

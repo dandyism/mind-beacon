@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BeaconActivity</string>
-    <string name="tgglbtn_text">Start Beacon</string>
-    <string name="intbtn_text">Set Interval</string>
+    <string name="tgglbttn_text">Start Beacon</string>
 </resources>

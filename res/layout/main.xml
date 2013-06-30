@@ -9,14 +9,27 @@
         android:id="@+id/button_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tgglbtn_text"
+        android:text="@string/tgglbttn_text"
         />
-    <Button
-        android:id="@+id/button_interval"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/intbtn_text"
-        android:onClick="showTimePickerDialog"
-        />
+        android:gravity="center">
+
+        <NumberPicker
+            android:id="@+id/hour_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <NumberPicker
+            android:id="@+id/minute_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>
