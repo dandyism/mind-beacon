@@ -7,20 +7,62 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.app.Activity;
+import android.view.View;
+import android.os.Bundle;
 
 public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
 
+    private static boolean dialogIsDisplayed = false;
+
+    public static class ReminderActivity extends Activity {
+
+        /** Called when the activity is first created. */
+        @Override
+        public void onCreate(Bundle savedInstanceState)
+        {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.reminder);
+            dialogIsDisplayed = true;
+        }
+
+        /**
+         * Callback for the dismiss button.
+         *
+         * Shuts down the activity.
+         */
+        public void dismiss(View v) {
+            finish();
+        }
+
+        @Override
+        protected void onStop() {
+            super.onStop();
+
+            // If a dialog ever stops, we don't ever want to see it again.
+            finish();
+        }
+
+        @Override
+        protected void onDestroy() {
+            super.onDestroy();
+
+            dialogIsDisplayed = false;
+        }
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent i = new Intent(context, ReminderActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
+        if ( !dialogIsDisplayed ) {
+            Intent i = new Intent(context, ReminderActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            context.startActivity(i);
+        }
     }
 
     public void SetAlarm(Context context, int intervalInMillis) {
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmManagerBroadcastReceiver.class);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), intervalInMillis, pi);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + intervalInMillis, intervalInMillis, pi);
     }
 }
