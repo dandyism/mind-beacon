@@ -13,5 +13,9 @@
         </activity>
         <receiver android:name="freedom.dandyism.mindbeacon.AlarmManagerBroadcastReceiver">
         </receiver>
+        <activity android:name=".ReminderActivity"
+            android:theme="@android:style/Theme.Dialog"
+            android:excludeFromRecents="true">
+        </activity>
     </application>
 </manifest>

@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">BeaconActivity</string>
     <string name="tgglbttn_text">Start Beacon</string>
+    <string name="reminder_text">Are you doing something that is truly important to you?</string>
 </resources>

@@ -6,13 +6,15 @@ import android.content.Context;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.app.Activity;
 
 public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO
-        Toast.makeText(context, "Alarm has gone off.", Toast.LENGTH_LONG).show();
+        Intent i = new Intent(context, ReminderActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(i);
     }
 
     public void SetAlarm(Context context, int intervalInMillis) {
