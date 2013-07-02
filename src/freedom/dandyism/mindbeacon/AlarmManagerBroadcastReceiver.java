@@ -52,7 +52,6 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         protected void onStop() {
             super.onStop();
 
-            ringtone.stop();
             // If a dialog ever stops, we don't ever want to see it again.
             finish();
         }
@@ -61,6 +60,7 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         protected void onDestroy() {
             super.onDestroy();
 
+            ringtone.stop();
             dialogIsDisplayed = false;
         }
     }
