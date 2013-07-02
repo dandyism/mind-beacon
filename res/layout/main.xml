@@ -9,8 +9,8 @@
         android:id="@+id/button_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tgglbttn_text"
-        android:onClick="launchBeacon"
+        android:text="@string/start_beacon"
+        android:onClick="toggleBeacon"
         />
 
     <LinearLayout

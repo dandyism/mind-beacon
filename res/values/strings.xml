@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Mind Beacon</string>
-    <string name="tgglbttn_text">Start Beacon</string>
+    <string name="start_beacon">Start Beacon</string>
+    <string name="stop_beacon">Stop Beacon</string>
     <string name="reminder_text">Are you doing something that is truly important to you?</string>
     <string name="dismiss">Dismiss</string>
 </resources>

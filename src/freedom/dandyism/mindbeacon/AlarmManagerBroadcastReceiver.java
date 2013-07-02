@@ -13,6 +13,8 @@ import android.os.Bundle;
 public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
 
     private static boolean dialogIsDisplayed = false;
+    private static AlarmManager alarmManager;
+    private static PendingIntent alarmIntent;
 
     public static class ReminderActivity extends Activity {
 
@@ -59,10 +61,16 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         }
     }
 
-    public void SetAlarm(Context context, int intervalInMillis) {
-        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    public void setAlarm(Context context, int intervalInMillis) {
+        alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmManagerBroadcastReceiver.class);
-        PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + intervalInMillis, intervalInMillis, pi);
+        alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + intervalInMillis, intervalInMillis, alarmIntent);
+    }
+
+    public void unsetAlarm() {
+        if ( alarmManager != null && alarmIntent != null ) {
+            alarmManager.cancel(alarmIntent);
+        }
     }
 }
