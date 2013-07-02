@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.app.Activity;
 import android.view.View;
 import android.os.Bundle;
+import android.media.RingtoneManager;
+import android.media.Ringtone;
 
 public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
 
@@ -18,6 +20,9 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
 
     public static class ReminderActivity extends Activity {
 
+        RingtoneManager rm;
+        Ringtone ringtone;
+
         /** Called when the activity is first created. */
         @Override
         public void onCreate(Bundle savedInstanceState)
@@ -25,6 +30,13 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.reminder);
             dialogIsDisplayed = true;
+
+            // Play a notification alarm
+            Context context = getApplicationContext();
+            rm = new RingtoneManager(this);
+            // TODO: The user should be able to set the alarm sound.
+            ringtone = rm.getRingtone(context, rm.getDefaultUri(RingtoneManager.TYPE_ALARM));
+            ringtone.play();
         }
 
         /**
@@ -40,6 +52,7 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         protected void onStop() {
             super.onStop();
 
+            ringtone.stop();
             // If a dialog ever stops, we don't ever want to see it again.
             finish();
         }
