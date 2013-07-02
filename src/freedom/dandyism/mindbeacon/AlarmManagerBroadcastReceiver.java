@@ -11,6 +11,8 @@ import android.view.View;
 import android.os.Bundle;
 import android.media.RingtoneManager;
 import android.media.Ringtone;
+import android.os.PowerManager;
+import android.view.WindowManager;
 
 public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
 
@@ -68,9 +70,14 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if ( !dialogIsDisplayed ) {
+            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+            PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, "reminder");
+
+            wl.acquire();
             Intent i = new Intent(context, ReminderActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
             context.startActivity(i);
+            wl.release();
         }
     }
 
