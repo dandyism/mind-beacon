@@ -7,7 +7,7 @@
     >
     <Button 
         android:id="@+id/button_toggle"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/start_beacon"
         android:onClick="toggleBeacon"
@@ -21,7 +21,8 @@
 
         <freedom.dandyism.mindbeacon.IntervalPicker
             android:id="@+id/hour_picker"
-            android:layout_width="wrap_content"
+	    android:layout_weight="1"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             min="0"
             max="99"
@@ -29,7 +30,8 @@
 
         <freedom.dandyism.mindbeacon.IntervalPicker
             android:id="@+id/minute_picker"
-            android:layout_width="wrap_content"
+	    android:layout_weight="1"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             min="0"
             max="59"
