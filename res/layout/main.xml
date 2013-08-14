@@ -14,7 +14,7 @@
 
         <freedom.dandyism.mindbeacon.IntervalPicker
             android:id="@+id/hour_picker"
-	    android:layout_weight="1"
+            android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             min="0"
@@ -23,7 +23,7 @@
 
         <freedom.dandyism.mindbeacon.IntervalPicker
             android:id="@+id/minute_picker"
-	    android:layout_weight="1"
+            android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             min="0"
