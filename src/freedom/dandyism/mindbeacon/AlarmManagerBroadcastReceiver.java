@@ -71,7 +71,9 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if ( !dialogIsDisplayed ) {
             PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-            PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.ON_AFTER_RELEASE, "reminder");
+            PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK
+                    | PowerManager.ACQUIRE_CAUSES_WAKEUP
+                    | PowerManager.ON_AFTER_RELEASE, "reminder");
 
             wl.acquire();
             Intent i = new Intent(context, ReminderActivity.class);
@@ -85,7 +87,9 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmManagerBroadcastReceiver.class);
         alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + intervalInMillis, intervalInMillis, alarmIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, 
+                                  System.currentTimeMillis() + intervalInMillis,
+                                  intervalInMillis, alarmIntent);
     }
 
     public void unsetAlarm() {

@@ -39,8 +39,13 @@ public class BeaconActivity extends FragmentActivity
         Context context = getApplicationContext();
         IntervalPicker hour_picker = (IntervalPicker) findViewById(R.id.hour_picker);
         IntervalPicker minute_picker = (IntervalPicker) findViewById(R.id.minute_picker);
-        int intervalInMillis = hour_picker.getValue() * 60 * 60 * 1000 + minute_picker.getValue() * 60 * 1000;
-                                                     // min  sec  millis                         // min  millis
+        int intervalInMillis = hour_picker.getValue()
+                               * 60   // minutes
+                               * 60   // seconds
+                               * 1000 // milliseconds
+                               + minute_picker.getValue()
+                               * 60   // seconds
+                               * 1000;// milliseconds
 
         if (alarm != null) {
             alarm.setAlarm(context, intervalInMillis);
