@@ -7,6 +7,10 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.content.Context;
 import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.content.Intent;
 
 public class BeaconActivity extends FragmentActivity
 {
@@ -21,6 +25,13 @@ public class BeaconActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         alarm = new AlarmManagerBroadcastReceiver();
+    }
+
+    // Creates our options menu
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
     }
 
     public void toggleBeacon(View v) {
@@ -56,6 +67,18 @@ public class BeaconActivity extends FragmentActivity
         else {
             // TODO
         }
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch(item.getItemId()) {
+            case R.id.settings:
+                Intent i = new Intent(BeaconActivity.this, SettingsActivity.class);
+                startActivity(i);
+                return true;
+        }
+
+        return false;
     }
 
     /** Kill the alarm. */

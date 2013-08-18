@@ -5,4 +5,5 @@
     <string name="stop_beacon">Stop Beacon</string>
     <string name="reminder_text">Are you doing something that is truly important to you?</string>
     <string name="dismiss">Dismiss</string>
+    <string name="settings">Settings</string>
 </resources>

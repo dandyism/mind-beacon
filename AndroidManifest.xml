@@ -19,5 +19,8 @@
             android:theme="@android:style/Theme.Dialog"
             android:excludeFromRecents="true">
         </activity>
+        <activity   android:label="@string/settings"
+                    android:name="SettingsActivity">
+        </activity>
     </application>
 </manifest>

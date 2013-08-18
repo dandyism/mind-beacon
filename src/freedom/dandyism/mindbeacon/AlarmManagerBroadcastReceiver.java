@@ -13,6 +13,8 @@ import android.media.RingtoneManager;
 import android.media.Ringtone;
 import android.os.PowerManager;
 import android.view.WindowManager;
+import android.preference.PreferenceManager;
+import android.net.Uri;
 
 public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
 
@@ -36,8 +38,10 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
             // Play a notification alarm
             Context context = getApplicationContext();
             rm = new RingtoneManager(this);
-            // TODO: The user should be able to set the alarm sound.
-            ringtone = rm.getRingtone(context, rm.getDefaultUri(RingtoneManager.TYPE_ALARM));
+            // Get the alarm sound from the preferences
+            String uri = PreferenceManager.getDefaultSharedPreferences(this)
+                    .getString("pref_alarmsound", rm.getDefaultUri(RingtoneManager.TYPE_ALARM).toString());
+            ringtone = rm.getRingtone(context, Uri.parse(uri));
             ringtone.play();
         }
 
